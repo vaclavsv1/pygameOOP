@@ -13,9 +13,9 @@ class Game:
             if event.type == pygame.QUIT:
                 self.running = False
             if event.type == pygame.KEYDOWN:
-
+                
                 self.running == False
-
+    
     def update(self):
         pass
 
