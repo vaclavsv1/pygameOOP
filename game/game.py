@@ -9,13 +9,13 @@ class Game:
 
     def handle_events(self):
         for event in pygame.event.get():
-            print(event.type)
+            print(event)
             if event.type == pygame.QUIT:
                 self.running = False
             if event.type == pygame.KEYDOWN:
-                
-                self.running == False
-    
+                if event.key == pygame.K_ESCAPE:
+                    self.running = False
+
     def update(self):
         pass
 
@@ -28,4 +28,4 @@ class Game:
             self.handle_events()
             self.update()
             self.draw()
-            self.clock.tick(FPS)
+            self.clock.tick(FPS)                  
