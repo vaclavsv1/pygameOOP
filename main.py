@@ -5,7 +5,7 @@ from game.game import Game
 def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    pygame.display.set_caption("GOATed Player")
+    pygame.display.set_caption("GOATED")
 
     game = Game(screen)
     game.run()
