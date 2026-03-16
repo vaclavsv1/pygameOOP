@@ -8,23 +8,23 @@ class Player(pygame.sprite.Sprite):
 
         image_loaded = False
 
-        for name in ["Shh", "football", "player", "goat"]:
-            for ext in [".png", ".jpg", "jpeg", "webp"]:
+        for name in ["ronny", "football", "player", "goat"]:
+            for ext in [".png", ".jpg", ".jpeg", ".webp"]:
                 try:
                     image_path = os.path.join("img", f"{name}{ext}")
-                    self.image = pygame.image.load(image_path).convert_alpha
+                    self.image = pygame.image.load(image_path).convert_alpha()
                     self.image = pygame.transform.scale(self.image, (PLAYER_WIDTH, PLAYER_HEIGHT))
                     print(f"Načten obrázek hráče: {image_path}")
                     image_loaded = True
-
-                    break
-
-                except (pygame.error, FileNotFoundError):
-                    print(f"Player nebyl nalezen: {pygame.error}")
+                    break  # break inner loop
+                except (pygame.error, FileNotFoundError) as e:
+                    print(f"Player nebyl nalezen: {image_path} ({e})")
                     continue
+            if image_loaded:
+                break  # break outer loop
 
         if not image_loaded:
-            self.image = pygame([PLAYER_WIDTH, PLAYER_HEIGHT])
+            self.image = pygame.Surface((PLAYER_WIDTH, PLAYER_HEIGHT), pygame.SRCALPHA)
             self.image.fill(PLAYER_COLOR)
 
         self.rect = self.image.get_rect()
@@ -79,4 +79,4 @@ class Player(pygame.sprite.Sprite):
         return False
 
     def draw(self, screen):
-        screen.blit(self.image, self.rect)       
+        screen.blit(self.image, self.rect)
